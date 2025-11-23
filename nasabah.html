@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KOPERASI SIMPAN PINJAM — Data Nasabah</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <div class="logo">KS</div>
+      <div class="title">
+        <h1>KOPERASI SIMPAN PINJAM</h1>
+        <p class="small">Halaman Data Nasabah</p>
+      </div>
+    </div>
+
+    <div class="hamburger">
+      <div class="menu">
+        <button class="menu-btn" id="menuToggle">☰ Menu</button>
+        <div class="dropdown" id="menuDrop" style="display:none">
+          <a href="index.html">Tambah Nasabah</a>
+          <a href="nasabah.html">Data Nasabah</a>
+          <a href="tambah_pinjaman.html">Tambah Pinjaman</a>
+          <a href="pinjaman.html">Data Pinjaman</a>
+          <a href="pembayaran.html">Pembayaran Nasabah</a>
+          <a href="tabungan.html">Tabungan Nasabah</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="space-between">
+      <h3>Data Nasabah</h3>
+      <div style="width:320px" class="row">
+        <input id="q" class="input" placeholder="Cari nama...">
+        <button id="refresh" class="btn ghost">Refresh</button>
+      </div>
+    </div>
+
+    <div style="margin-top:12px" class="table-wrap">
+      <table class="table" id="tableNasabah">
+        <thead>
+          <tr><th>No</th><th>Tanggal</th><th>Nama</th><th>Usaha</th><th>Tempat Usaha</th><th>Alamat</th><th>HP</th><th>Aksi</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer card">
+    <div class="small">@2025 Yeriyuma Zai, A.Md.Kom</div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+(function(){
+  const menuBtn = document.getElementById('menuToggle');
+  const menuDrop = document.getElementById('menuDrop');
+  menuBtn.addEventListener('click', ()=> menuDrop.style.display = menuDrop.style.display === 'none' ? 'block' : 'none');
+
+  const q = document.getElementById('q');
+  const tbody = document.querySelector('#tableNasabah tbody');
+  const refresh = document.getElementById('refresh');
+
+  function render(filter=''){
+    const arr = app.read(app.STORE.nasabahKey)
+      .filter(x => x.nama.toLowerCase().includes(filter.toLowerCase()));
+    tbody.innerHTML = arr.map((n,i) => `
+      <tr>
+        <td>${i+1}</td>
+        <td>${new Date(n.createdAt).toLocaleDateString('id-ID')}</td>
+        <td>${n.nama}</td>
+        <td>${n.usaha||'-'}</td>
+        <td>${n.tempat_usaha||'-'}</td>
+        <td>${n.alamat||'-'}</td>
+        <td>${n.hp||'-'}</td>
+        <td>
+          <button class="btn ghost" data-id="${n.id}" data-act="edit">Edit</button>
+          <button class="btn danger" data-id="${n.id}" data-act="delete">Hapus</button>
+        </td>
+      </tr>
+    `).join('') || '<tr><td colspan="8" class="small">Belum ada data</td></tr>';
+  }
+
+  tbody.addEventListener('click', (e)=>{
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    const id = btn.dataset.id;
+    const act = btn.dataset.act;
+    if(act==='edit'){
+      const data = app.read(app.STORE.nasabahKey).find(x=> x.id===id);
+      if(!data) return;
+      const nama = prompt('Nama', data.nama);
+      if(nama===null) return;
+      data.nama = nama.trim() || data.nama;
+      data.hp = prompt('HP', data.hp) || data.hp;
+      data.usaha = prompt('Usaha', data.usaha) || data.usaha;
+      data.tempat_usaha = prompt('Tempat Usaha', data.tempat_usaha) || data.tempat_usaha;
+      data.alamat = prompt('Alamat', data.alamat) || data.alamat;
+      app.updateNasabah(data);
+      render(q.value);
+    } else if(act==='delete'){
+      if(confirm('Hapus nasabah? Semua pinjaman dan tabungan terkait juga akan dihapus.')) {
+        app.deleteNasabah(id);
+        render(q.value);
+      }
+    }
+  });
+
+  q.addEventListener('input', ()=> render(q.value));
+  refresh.addEventListener('click', ()=> render(q.value));
+
+  render('');
+})();
+</script>
+</body>
+</html>

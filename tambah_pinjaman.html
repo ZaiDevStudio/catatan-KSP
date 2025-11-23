@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Pinjaman - KSP Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-area"><img src="KSP.png" alt="Logo"><h1>KSP ONLINE</h1></div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="navMenu" class="nav-menu">
+               <a href="tambah_nasabah.html">Tambah Nasabah</a>
+               <a href="index.html">Data Nasabah</a>
+               <a href="tambah_pinjaman.html">Tambah Pinjaman</a>
+               <a href="pinjaman.html">Data Pinjaman</a>
+               <a href="pembayaran.html">Pembayaran</a>
+               <a href="tabungan.html">Tabungan</a>
+               <a href="saldo.html">Rekapan Saldo</a>
+               <a href="bukti.html">Bukti Pembayaran</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Input Pinjaman Baru</h2>
+        <form id="formTambahPinjaman" style="background: white; padding: 20px; border-radius: 8px;">
+            <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" id="tanggal" required>
+            </div>
+            <div class="form-group">
+                <label>Nama Nasabah</label>
+                <select id="namaNasabah" required><option value="">Pilih Nasabah</option></select>
+            </div>
+            <div class="form-group">
+                <label>Pinjaman Ke-</label>
+                <input type="number" id="pinjamanKe" value="1">
+            </div>
+            <div class="form-group">
+                <label>Pinjaman Pokok (Rp)</label>
+                <input type="number" id="pokok" required>
+            </div>
+            <div class="form-group">
+                <label>Jasa / Bunga (%)</label>
+                <input type="number" id="jasa" value="10">
+            </div>
+            <div class="form-group">
+                <label>Total Dibayar (Pokok + Jasa) - Otomatis</label>
+                <input type="number" id="totalBayar" readonly style="background: #e9ecef;">
+            </div>
+            <div class="form-group">
+                <label>Tipe Cicilan</label>
+                <select id="tipeCicilan">
+                    <option value="Harian">Harian</option>
+                    <option value="Mingguan">Mingguan</option>
+                    <option value="Bulanan">Bulanan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Jumlah Angsuran (Kali)</label>
+                <input type="number" id="jmlAngsuran" value="10">
+            </div>
+            <div class="form-group">
+                <label>Nominal Cicilan Per Angsuran - Otomatis</label>
+                <input type="number" id="nominalCicilan" readonly style="background: #e9ecef; font-weight:bold; color:blue;">
+            </div>
+            <div class="form-group">
+                <label>Potongan Tabungan (%)</label>
+                <input type="number" id="tabungan" value="2">
+                <input type="hidden" id="nominalTabunganHidden">
+            </div>
+            <div class="form-group">
+                <label>Biaya Admin (%)</label>
+                <input type="number" id="admin" value="1">
+            </div>
+            <div class="form-group">
+                <label>Uang Diterima Nasabah (Bersih) - Otomatis</label>
+                <input type="number" id="uangDiterima" readonly style="background: #d1e7dd; font-weight:bold;">
+            </div>
+            <button type="submit" class="btn-primary">Proses Pinjaman</button>
+        </form>
+    </main>
+
+    <footer>&copy; 2025 Koperasi Simpan Pinjam. Developer Y. Zai, A.Md.Kom</footer>
+    <div id="licenseModal"><h2>Aplikasi Terkunci</h2><p>Hubungi Developer.</p></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Nasabah - KSP Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="licenseModal">
+        <h2>Aplikasi Terkunci</h2>
+        <p>Aplikasi ini berbayar. Hubungi pihak pengelola untuk meminta kode lisensi.</p>
+        <p>Didesain hanya untuk 1 perangkat.</p>
+    </div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="KSP.png" alt="Logo KSP">
+                <h1>KSP ONLINE</h1>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="navMenu" class="nav-menu">
+                <a href="tambah_nasabah.html">Tambah Nasabah</a>
+                <a href="index.html">Data Nasabah</a>
+                <a href="tambah_pinjaman.html">Tambah Pinjaman</a>
+                <a href="pinjaman.html">Data Pinjaman</a>
+                <a href="pembayaran.html">Pembayaran</a>
+                <a href="tabungan.html">Tabungan</a>
+                <a href="saldo.html">Rekapan Saldo</a>
+                <a href="bukti.html">Bukti Pembayaran</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Data Nasabah</h2>
+        <div class="form-group">
+            <input type="text" id="searchNasabah" placeholder="Cari nama nasabah...">
+        </div>
+        <div class="table-container">
+            <table id="tabelNasabah">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Usaha</th>
+                        <th>Tempat</th>
+                        <th>Alamat</th>
+                        <th>No HP</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Koperasi Simpan Pinjam. Developer Y. Zai, A.Md.Kom
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

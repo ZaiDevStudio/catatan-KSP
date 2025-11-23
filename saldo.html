@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekapan Saldo - KSP Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-area"><img src="KSP.png" alt="Logo"><h1>KSP ONLINE</h1></div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="navMenu" class="nav-menu">
+               <a href="tambah_nasabah.html">Tambah Nasabah</a>
+               <a href="index.html">Data Nasabah</a>
+               <a href="tambah_pinjaman.html">Tambah Pinjaman</a>
+               <a href="pinjaman.html">Data Pinjaman</a>
+               <a href="pembayaran.html">Pembayaran</a>
+               <a href="tabungan.html">Tabungan</a>
+               <a href="saldo.html">Rekapan Saldo</a>
+               <a href="bukti.html">Bukti Pembayaran</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2>Rekapan Keuangan</h2>
+        <div class="card-grid">
+            <div class="card" style="border-left-color: #0d6efd;">
+                <h3>Total Pinjaman (Diputar)</h3>
+                <h1 id="saldoPinjaman" style="color:#0d6efd">Rp 0</h1>
+            </div>
+            <div class="card" style="border-left-color: #dc3545;">
+                <h3>Sisa Piutang (Belum Lunas)</h3>
+                <h1 id="saldoPiutang" style="color:#dc3545">Rp 0</h1>
+            </div>
+            <div class="card" style="border-left-color: #198754;">
+                <h3>Total Uang Masuk (Pembayaran)</h3>
+                <h1 id="saldoMasuk" style="color:#198754">Rp 0</h1>
+            </div>
+            <div class="card" style="border-left-color: #ffc107;">
+                <h3>Total Tabungan Nasabah</h3>
+                <h1 id="saldoTabungan" style="color:#d6a100">Rp 0</h1>
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy; 2025 Koperasi Simpan Pinjam. Developer Y. Zai, A.Md.Kom</footer>
+    <div id="licenseModal"><h2>Aplikasi Terkunci</h2><p>Hubungi Developer.</p></div>
+    <script src="script.js"></script>
+</body>
+</html>
